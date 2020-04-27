@@ -8,6 +8,12 @@ You can also sign up for our courses by going to this [link](https://kaizen.itve
 
 ## Using this repository
 
-* TBD: Setting up Jupyter Lab environment (if you don't want to use our labs)
-* Clone this repository `git clone https://github.com/dgadiraju/itversity-books.git`
-* Follow this [video](https://youtu.be/H49JBp6OIHY) to understand how to use starter kits. Click on the below image.
+* On Mac - Ensure to have brew so that you can setup desired version of Python
+* Clone GitHub Repository - `git clone https://github.com/dgadiraju/itversity-books`
+* Get into the folder - `cd itversity-books`
+* Create Python Virtual Environment  - `python -m venv itversity-books-env`
+* Activate Virtual Environment - `source itversity-books-env/bin/activate`
+* Setup Jupyter - `pip install jupyter`
+* Setup Jupyter Lab - `pip install jupyter lab`
+* Launch Jupyter Lab and start learning using the books available as part of the repository. - `jupyter lab`
+* Follow this [video](https://youtu.be/H49JBp6OIHY) to understand how to use starter kits.
