@@ -13,6 +13,10 @@ As part of this session we will see how to setup environment to practice Spark i
 
 The content will be free, however if you want to watch videos to understand key concepts feel free to [join our YouTube Channel as a member](https://www.youtube.com/channel/UCakdSIPsJqiOLqylgoYmwQg/join).
 
+Here is the video for the topics starting from **Setup on Windows** up to **Start and Validate Hadoop Components**. There is another video as a continuation, scroll down to Setup and Validate Spark to get the continued video.
+
+[![Data Engineering - Setup Development Environment](http://img.youtube.com/vi/Z4pDhBaWB64/0.jpg)](http://www.youtube.com/watch?v=Z4pDhBaWB64 "Data Engineering - Setup Development Environment")
+
 ## Setup on Windows
 One can setup Spark on Windows, but getting all the key technologies with respect to Data Engineering working on Windows is a bit challenge.
 * If you have 16 GB RAM and Quad Core, then you can setup a single node Hadoop and Spark Cluster for practice.
@@ -147,6 +151,10 @@ hdfs dfs -mkdir -p /user/centos
 hdfs dfs -put /opt/hadoop/etc/hadoop /user/centos
 hdfs dfs -cat /user/centos/core-site.xml
 ```
+
+Here is the continuation for setting up development environment for Data Engineering using Apache Spark on top of Hadoop.
+
+[![Data Engineering - Setup Development Environment](http://img.youtube.com/vi/jcdAO90yY2U/0.jpg)](http://www.youtube.com/watch?v=jcdAO90yY2U "Data Engineering - Setup Development Environment (Contd...)")
 
 ## Setup and Validate Spark
 Let us understand how to setup and validate Spark. We will be using YARN to submit Spark Jobs for our practice.
