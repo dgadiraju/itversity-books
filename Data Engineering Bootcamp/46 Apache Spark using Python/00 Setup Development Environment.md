@@ -156,19 +156,6 @@ Here is the continuation for setting up development environment for Data Enginee
 
 [![Data Engineering - Setup Development Environment](http://img.youtube.com/vi/jcdAO90yY2U/0.jpg)](http://www.youtube.com/watch?v=jcdAO90yY2U "Data Engineering - Setup Development Environment (Contd...)")
 
-## Setup and Validate Spark
-Let us understand how to setup and validate Spark. We will be using YARN to submit Spark Jobs for our practice.
-
-* Download Spark 2.4.6 Version.
-* Update Spark Configuration files.
-* Validate Spark using Scala by running `spark-shell --master yarn --conf spark.ui.port=0`.
-* Validate Spark using Python by running `pyspark --master yarn --conf spark.ui.port=0`. Make sure to export PYSPARK_PYTHON to point to Python 3 if the default version is 2.7.
-```
-export PYSPARK_PYTHON=python3
-pyspark --master yarn --conf spark.ui.port=0
-```
-* Validate Spark SQL by running `spark-sql --master yarn --conf spark.ui.port=0`.
-
 ## Setup Datasets
 
 Let us go ahead and setup retail_db dataset to get started with NiFi.
@@ -181,6 +168,57 @@ sudo mkdir /data
 sudo chown -R centos:centos /data
 git clone https://www.github.com/dgadiraju/retail_db.git /data/retail_db
 ```
+
+## Setup and Validate Spark
+Let us understand how to setup and validate Spark. We will be using YARN to submit Spark Jobs for our practice.
+
+* Download Spark 2.4.6 Version.
+* Update Spark Configuration files.
+* Validate Spark using Scala by running `spark-shell --master yarn --conf spark.ui.port=0`.
+* Here is Scala based code which you can use to validate.
+```
+val df = spark.read.
+    option("inferSchema", true).
+    csv("/user/centos/retail_db/orders").
+    toDF("order_id", "order_date", "order_customer_id", "order_status")
+
+// Previewing Schema
+df.printSchema
+
+// Perform Operation and Preview Output
+df.groupBy("order_date").count.show
+
+// Write processed data to HDFS
+df.groupBy("order_date").count.
+    write.
+    option("header", true).
+    csv("/user/centos/retail_db/order_count_by_date")
+```
+* Validate Spark using Python by running `pyspark --master yarn --conf spark.ui.port=0`. Make sure to export PYSPARK_PYTHON to point to Python 3 if the default version is 2.7.
+```
+export PYSPARK_PYTHON=python3
+pyspark --master yarn --conf spark.ui.port=0
+```
+* Here is Python based code which you can use to validate.
+```
+df = spark.read. \
+    option("inferSchema", True). \
+    csv("/user/centos/retail_db/orders"). \
+    toDF("order_id", "order_date", "order_customer_id", "order_status")
+
+# Previewing Schema
+df.printSchema()
+
+# Perform Operation and Preview Output
+df.groupBy("order_date").count().show()
+
+# Write processed data to HDFS
+df.groupBy("order_date").count(). \
+    write. \
+    option("header", True). \
+    csv("/user/centos/retail_db/order_count_by_date")
+```
+* Validate Spark SQL by running `spark-sql --master yarn --conf spark.ui.port=0`.
 
 ## Configure Jupyter with Spark
 Let us have a environment on the VM where Jupyter and Spark are integrated. It can be the local VM or it can be VM on Cloud.
