@@ -174,6 +174,17 @@ Let us understand how to setup and validate Spark. We will be using YARN to subm
 
 * Download Spark 2.4.6 Version.
 * Update Spark Configuration files.
+  * Update **spark-env.sh** to integrate with Hadoop.
+```
+#!/usr/bin/env bash
+
+HADOOP_CONF_DIR=/opt/hadoop/etc/hadoop
+```
+  * Update **spark-defaults.conf** to launch spark-sql using derby.
+```
+spark.driver.extraJavaOptions -Dderby.system.home=/tmp/derby
+spark.sql.repl.eagerEval.enabled   true
+```
 * Validate Spark using Scala by running `spark-shell --master yarn --conf spark.ui.port=0`.
 * Here is Scala based code which you can use to validate.
 ```
